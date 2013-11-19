@@ -23,7 +23,7 @@ public class CardGame extends JFrame{
 	JFrame player1 = new JFrame("Player 1");
 	JFrame player2 = new JFrame("Player 2");
 	JFrame p2Frame1 = new JFrame();
-	JFrame p2Frame2 = new JFrame();
+	JFrame p1Frame1 = new JFrame();
 	JButton rollp1 = new JButton("Flip Card Player 1");
 	JButton rollp2 = new JButton("Flip Card Player 2");
 	private ArrayList<Object> cards = new ArrayList<Object>();
@@ -66,7 +66,12 @@ public class CardGame extends JFrame{
 		player1.setResizable(false);
 		//set visibillity
 		player1.setVisible(true);
-		
+		rollp1.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e){
+				flipP1();
+			}
+		});
 		//add roll button to player 1
 		rollp1.setBounds(170, 0, 150, 60);
 		player1.add(rollp1);
@@ -114,13 +119,9 @@ public class CardGame extends JFrame{
 		cards.add("back.jpg");
 		
 
-		p2Frame1.setBounds(800, 300, 190,270);
+		p2Frame1.setBounds(970, 300, 190,270);
 		p2Frame1.setAlwaysOnTop(true);
 		p2Frame1.setResizable(false);
-		
-		p2Frame2.setBounds(1110, 300, 190,270);
-		p2Frame2.setAlwaysOnTop(true);
-		p2Frame2.setResizable(false);
 
 		for(int i = 0; i < cards.size(); i++){
 			
@@ -128,23 +129,58 @@ public class CardGame extends JFrame{
 			card = r.nextInt(1)+1;
 			if(card == 1){
 				try {
-					p2Frame1.setContentPane(new JLabel(new ImageIcon
-							(ImageIO.read(new File("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/back.jpg")))));
-					p2Frame2.setContentPane(new JLabel(new ImageIcon
-							(ImageIO.read(new File("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/2c.jpg")))));
+					p2Frame1.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/back.jpg")))));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				p2Frame2.pack();
 				p2Frame1.pack();
 				p2Frame1.setVisible(true);
-				p2Frame2.setVisible(true);
 			}
 		}
-
-
 		
 	}
+	//fliip method
+		public void flipP1()
+		{
+			//Declare variables
+			int card;
+			//Add cards to list
+			cards.add("2c.jpg");cards.add("2d.jpg");cards.add("2h.jpg");cards.add("2s.jpg");
+			cards.add("3c.jpg");cards.add("3d.jpg");cards.add("3h.jpg");cards.add("3s.jpg");
+			cards.add("4c.jpg");cards.add("4d.jpg");cards.add("4h.jpg");cards.add("4s.jpg");
+			cards.add("5c.jpg");cards.add("5d.jpg");cards.add("5h.jpg");cards.add("5s.jpg");
+			cards.add("6c.jpg");cards.add("6d.jpg");cards.add("6h.jpg");cards.add("6s.jpg");
+			cards.add("7c.jpg");cards.add("7d.jpg");cards.add("7h.jpg");cards.add("7s.jpg");
+			cards.add("8c.jpg");cards.add("8d.jpg");cards.add("8h.jpg");cards.add("8s.jpg");
+			cards.add("9c.jpg");cards.add("9d.jpg");cards.add("9h.jpg");cards.add("9s.jpg");
+			cards.add("10c.jpg");cards.add("10d.jpg");cards.add("10h.jpg");cards.add("10s.jpg");
+			cards.add("acec.jpg");cards.add("aced.jpg");cards.add("aceh.jpg");cards.add("aces.jpg");
+			cards.add("back.jpg");
+			
+
+			p1Frame1.setBounds(270, 300, 190,270);
+			p1Frame1.setAlwaysOnTop(true);
+			p1Frame1.setResizable(false);
+
+			for(int i = 0; i < cards.size(); i++){
+				
+				Random r = new Random();
+				card = r.nextInt(1)+1;
+				if(card == 1){
+					try {
+						p1Frame1.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File
+								("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/back.jpg")))));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					p1Frame1.pack();
+					p1Frame1.setVisible(true);
+				}
+			}
+
+
+			
+		}
 	//Main method
 	public static void main(String []args){
 		
