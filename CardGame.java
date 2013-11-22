@@ -7,12 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+
 public class CardGame extends JFrame{
 	
 	//Fields
 	private static final long serialVersionUID = 1L;
-	JButton flipp1 = new JButton("Flip Card");
-	JFrame frame = new JFrame("War");
+	JButton flip = new JButton("Flip");
 	JLabel label = new JLabel();
 	JPanel pan = new JPanel();
 	JPanel board = new JPanel();
@@ -48,10 +48,9 @@ public class CardGame extends JFrame{
 		player2.setForeground(Color.WHITE);
 		player2.setBounds(700,0,150,50);
 		//Flip button
-		JButton flip = new JButton("Flip");
+		flip.setEnabled(false);
 		flip.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				
 				flipCard();
 			}
 		});
@@ -77,6 +76,7 @@ public class CardGame extends JFrame{
 	 */
 	public void getCard()
 	{
+		flip.setEnabled(true);
 		ImageIcon back = new ImageIcon(g.getBack());
 		JLabel pic = new JLabel(back);
 		JLabel pic2 = new JLabel(back);
@@ -91,29 +91,36 @@ public class CardGame extends JFrame{
 	 */
 	public void flipCard()
 	{
-		ImageIcon front2 = new ImageIcon("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/" + g.getFlipCard());
-		JLabel f2 = new JLabel(front2);
-		add(f2);
-		f2.setBounds(570,110,170,240);
-		ImageIcon front = new ImageIcon("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/" + g.getFlipCard());
+		//player 1 card
+		ImageIcon front = new ImageIcon("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/" + g.getFlipCardP1());
 		JLabel f = new JLabel(front);
 		add(f);
 		f.setBounds(150,110,170,240);
-		validate();
+		//Player 2 card
+		ImageIcon front2 = new ImageIcon("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/" + g.getFlipCardP2());
+		JLabel f2 = new JLabel(front2);
+		add(f2);
+		f2.setBounds(570,110,170,240);
+		validate();	
+		//determine winner
+		winner();
 	}
 	/**
-	 * To string method
-	 * @param args
-	 * @return 
+	 * Winner method
+	 * @param
 	 */
-	public String toString(String s){
-		s = "Card: " + g.getFlipCard();
-		return s;
+	public void winner(){
+		
+		String p1 = g.getWinnerP1();
+		JLabel label = new JLabel(p1);
+		label.setForeground(Color.GRAY.brighter());
+		add(label);
+		label.setBounds(400,450,100,100);
+	
 	}
 	//Main method
 	public static void main(String []args)
 	{
-		
 		new CardGame();
 
 	}
