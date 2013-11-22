@@ -91,6 +91,10 @@ public class CardGame extends JFrame{
 	 */
 	public void flipCard()
 	{
+		ImageIcon front2 = new ImageIcon("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/" + g.getFlipCard());
+		JLabel f2 = new JLabel(front2);
+		add(f2);
+		f2.setBounds(570,110,170,240);
 		ImageIcon front = new ImageIcon("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/" + g.getFlipCard());
 		JLabel f = new JLabel(front);
 		add(f);
@@ -103,7 +107,7 @@ public class CardGame extends JFrame{
 	 * @return 
 	 */
 	public String toString(String s){
-		
+		s = "Card: " + g.getFlipCard();
 		return s;
 	}
 	//Main method

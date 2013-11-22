@@ -9,18 +9,28 @@ import java.util.Scanner;
 public class GuiDeck {
 
 	/**
+	 * Fields
+	 */
+	ArrayList<String> lines = new ArrayList<String>();
+	ArrayList<String> player1 = new ArrayList<String>();
+	ArrayList<String> player2 = new ArrayList<String>();
+	
+	/**
 	 * Constructor
 	 */
 	public GuiDeck()
 	{
 		
 	}
+	/**
+	 * flip card method
+	 * @return
+	 */
 	public String getFlipCard()
 	{
 		Scanner inputFile = null;
 		String inputLine = "";
 		Random r = new Random();
-		ArrayList<String> lines = new ArrayList<String>();
 		
 		//Open the pop up
 		File cards = new File("cards.txt");
@@ -40,10 +50,18 @@ public class GuiDeck {
 			lines.add(inputLine);
 		}
 		String rc = lines.get(r.nextInt(lines.size()));
-		System.out.println(rc);
 		return rc;
 	}
-	
+	/**
+	 * determines winner
+	 */
+	public void winner(){
+		
+	}
+	/**
+	 * displayes back of card
+	 * @return
+	 */
 	public String getBack(){
 		
 		File file = new File("back.jpg");
