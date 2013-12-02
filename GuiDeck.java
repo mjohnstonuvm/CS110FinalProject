@@ -86,6 +86,7 @@ public class GuiDeck {
 		}
 		rc2 = lines2.get(r.nextInt(lines.size()));
 		System.out.println("Player 2: " + rc2);
+		System.out.println("--------------------");
 		return rc2;
 	}
 	/**
@@ -96,21 +97,21 @@ public class GuiDeck {
 		if(rc1.compareTo(rc2) > 0 && player1.size() != MAXCARDS){
 			player1.add(rc1);
 			player1.add(rc2);
-			System.out.println("P1" + player1);
-			w = "Player 1 Wins!";
 		}
 		else if(rc1.compareTo(rc2) < 0 && player2.size() != MAXCARDS)
 		{
 			player2.add(rc1);
 			player2.add(rc2);
-			System.out.println("P2" + player2);
-			w = "Player 2 Wins!";
 		}
 		else if(rc1.equals(rc2)){
 			lines.remove(rc1);
 			lines2.remove(rc2);
 		}
-		
+		else if(player1.size() == MAXCARDS){
+			w ="Player 1 Wins!";
+			System.out.println("Player 1 Deck: " + player1);
+			System.exit(0);
+		}
 		return w;
 	}
 	/**
@@ -131,11 +132,10 @@ public class GuiDeck {
 			lines.remove(rc1);
 			lines2.remove(rc2);
 		}
-		else if(player1.size() == MAXCARDS){
-			w ="Player 1 Wins!";
-		}
 		else if(player2.size() == MAXCARDS){
 			w ="Player 2 Wins!";
+			System.out.println("Player 2 Deck: " + player2);
+			System.exit(0);
 		}
 		return w;
 	}

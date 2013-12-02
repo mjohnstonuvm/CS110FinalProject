@@ -5,6 +5,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 
@@ -107,7 +108,6 @@ public class CardGame extends JFrame{
 	}
 	/**
 	 * Winner method
-	 * @param
 	 */
 	public void winner(){
 		
@@ -116,6 +116,12 @@ public class CardGame extends JFrame{
 		label.setForeground(Color.GRAY.brighter());
 		add(label);
 		label.setBounds(400,450,100,100);
+		
+		String p2 = g.getWinnerP2();
+		JLabel label2 = new JLabel(p2);
+		label2.setForeground(Color.GRAY.brighter());
+		add(label2);
+		label2.setBounds(400,450,100,100);
 	
 	}
 	//Main method
