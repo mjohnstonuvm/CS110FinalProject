@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
+
 public class GuiDeck {
 
 	/**
@@ -15,8 +17,10 @@ public class GuiDeck {
 	ArrayList<String> lines2 = new ArrayList<String>();
 	ArrayList<String> player1 = new ArrayList<String>();
 	ArrayList<String> player2 = new ArrayList<String>();
-	String rc1, rc2, w;
-	final int MAXCARDS = 10;
+	static String rc1,rc2;
+	String w;
+	ImageIcon v;
+	final int MAXCARDS = 52;
 	/**
 	 * Constructor
 	 */
@@ -48,14 +52,23 @@ public class GuiDeck {
 		//Read the file line by line
 		while(inputFile.hasNext())
 		{
-			for(int i = 0; i < 52; i++){
+			for(int i = 0; i < MAXCARDS; i++){
 			inputLine = inputFile.nextLine();
 			lines.add(inputLine);
 			}
 		}
 		rc1 = lines.get(r.nextInt(lines.size()));
 		System.out.println("Player 1: " + rc1);
-		return rc1;
+		return rc1 ;
+	}
+	//Get random card 1
+	public ImageIcon getRc1() {
+		ImageIcon v = new ImageIcon(rc1);
+		return v;
+	}
+	//set random card 1
+	public static void setRc1(String rc1) {
+		GuiDeck.rc1 = rc1;
 	}
 	/**
 	 * flip card method
@@ -66,7 +79,6 @@ public class GuiDeck {
 		Scanner inputFile = null;
 		String inputLine = "";
 		Random r = new Random();
-		
 		//Open the pop up
 		File cards = new File("cards2.txt");
 		//Try catch clause
@@ -84,10 +96,19 @@ public class GuiDeck {
 			inputLine = inputFile.nextLine();
 			lines2.add(inputLine);
 		}
+		
 		rc2 = lines2.get(r.nextInt(lines.size()));
 		System.out.println("Player 2: " + rc2);
 		System.out.println("--------------------");
 		return rc2;
+	}
+	//get random card 2
+	public static String getRc2() {
+		return rc2;
+	}
+	//set random card 2
+	public void setRc2(String rc2) {
+		GuiDeck.rc2 = rc2;
 	}
 	/**
 	 * determines winner
@@ -106,10 +127,11 @@ public class GuiDeck {
 		else if(rc1.equals(rc2)){
 			lines.remove(rc1);
 			lines2.remove(rc2);
+			System.out.println("Cards Removed");
 		}
 		else if(player1.size() == MAXCARDS){
 			w ="Player 1 Wins!";
-			System.out.println("Player 1 Deck: " + player1);
+			System.out.println(w + "\n" +"Player 1 Deck: " + player1);
 			System.exit(0);
 		}
 		return w;
@@ -134,7 +156,7 @@ public class GuiDeck {
 		}
 		else if(player2.size() == MAXCARDS){
 			w ="Player 2 Wins!";
-			System.out.println("Player 2 Deck: " + player2);
+			System.out.println(w + "\n" + "Player 2 Deck: " + player2);
 			System.exit(0);
 		}
 		return w;

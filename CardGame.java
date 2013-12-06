@@ -19,6 +19,10 @@ public class CardGame extends JFrame{
 	JPanel board = new JPanel();
 	JPanel b2 = new JPanel();
 	GuiDeck g = new GuiDeck();
+	ImageIcon v;
+	String s,s2;
+	static JLabel f;
+	JLabel f2;
 	/**
 	 * Contructor
 	 */
@@ -59,10 +63,11 @@ public class CardGame extends JFrame{
 		flip.setBounds(400,230,100,90);
 		add(flip);
 		//Start button
-		JButton start = new JButton("Start");
+		final JButton start = new JButton("Start");
 		start.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent st){
 				getCard();
+				start.setEnabled(false);
 			}
 		});
 		start.setBounds(400,0,100,90);
@@ -93,16 +98,13 @@ public class CardGame extends JFrame{
 	public void flipCard()
 	{
 		//player 1 card
-		ImageIcon front = new ImageIcon("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/" + g.getFlipCardP1());
-		JLabel f = new JLabel(front);
+		f = new JLabel(new ImageIcon("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/" + g.getFlipCardP1()));
 		add(f);
 		f.setBounds(150,110,170,240);
 		//Player 2 card
-		ImageIcon front2 = new ImageIcon("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/" + g.getFlipCardP2());
-		JLabel f2 = new JLabel(front2);
+		f2 = new JLabel(new ImageIcon("/Users/Sir/Desktop/Programming/JAVA/CardGameGui/cardpics/" + g.getFlipCardP2()));
 		add(f2);
 		f2.setBounds(570,110,170,240);
-		validate();	
 		//determine winner
 		winner();
 	}
